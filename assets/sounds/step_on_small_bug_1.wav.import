@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/step_on_small_bug_1.wav-7e44c72f07387db00c72de08c885ac7a.sample"
+
+[deps]
+
+source_file="res://assets/sounds/step_on_small_bug_1.wav"
+dest_files=[ "res://.import/step_on_small_bug_1.wav-7e44c72f07387db00c72de08c885ac7a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

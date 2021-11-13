@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/bg.png" type="Texture" id=1]
+[ext_resource path="res://src/TitleScreen.gd" type="Script" id=2]
+
+[node name="Title" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -49.5
+margin_top = -7.0
+margin_right = 49.5
+margin_bottom = 7.0
+text = "Bugsterminator"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -25.0
+margin_top = 44.0809
+margin_right = 25.0
+margin_bottom = 64.0809
+text = "START"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 88.0
+margin_top = 294.0
+margin_right = 300.0
+margin_bottom = 558.0
+text = "Controlls:
+WASD or arrows controlls player.
+Look with mouse.
+Use wepons with space or left mouse button.
+
+Gamepad:
+Move with left joystick or D-pad
+Look with right joystick.
+Fire with one button (?)
+
+The goal of the game is to get as far up the bug infested tower.
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 503.722, 299.184 )
+scale = Vector2( 1.14764, 1 )
+texture = ExtResource( 1 )
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]

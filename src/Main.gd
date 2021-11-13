@@ -24,4 +24,4 @@ func _on_enemy_die():
 		if enemy.hp > 0:
 			enemies_left += 1
 	
-	$HUD/Bugs_label.text = "Bugs left: " + str(enemies_left)
+	$HUD/MarginContainer/Bugs_label.text = "Bugs left: " + str(enemies_left)

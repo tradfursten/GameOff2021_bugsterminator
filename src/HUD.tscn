@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/HUD.gd" type="Script" id=1]
+[ext_resource path="res://assets/spray_hud.png" type="Texture" id=2]
+[ext_resource path="res://assets/spray_hud_texture.png" type="Texture" id=3]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Container" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hp_container" type="MarginContainer" parent="Container"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 105.0
+margin_bottom = 54.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HP_label" type="Label" parent="Container/hp_container"]
+margin_right = 65.0
+margin_bottom = 14.0
+text = "HP: 100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="level_container" type="MarginContainer" parent="Container"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -66.0
+margin_top = 40.0
+margin_right = -40.0
+grow_horizontal = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level_lable" type="Label" parent="Container/level_container"]
+margin_right = 50.0
+margin_bottom = 14.0
+text = "Level: 1"
+
+[node name="timer_container" type="MarginContainer" parent="Container"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -48.0
+margin_top = 40.0
+margin_right = 48.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="time_label" type="Label" parent="Container/timer_container"]
+margin_right = 96.0
+margin_bottom = 14.0
+text = "Time: 00:00:00"
+
+[node name="SprayLevel" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="SprayLevel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -72.0
+margin_top = -33.0
+margin_right = 6.0
+margin_bottom = -5.0
+rect_rotation = 270.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 100.0
+texture_progress = ExtResource( 3 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="SprayLevel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -128.0
+margin_top = -128.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
