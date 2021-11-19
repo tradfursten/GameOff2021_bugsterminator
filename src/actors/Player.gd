@@ -85,7 +85,7 @@ func damage(damage):
 	Globals.take_damage(damage)
 	
 	$HurtPlayer.play()
-	$Camera2D.add_trauma(0.25)
+	$Camera2D.add_trauma(0.1)
 
 func pick_up():
 	print("Player pick up")

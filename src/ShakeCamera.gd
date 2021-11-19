@@ -37,4 +37,4 @@ func shake():
 	offset.y = max_offset.y * amount * noise.get_noise_2d(noise.seed*3, noise_y)
 
 func add_trauma(amount):
-	trauma = min(trauma + amount, 0.5)
+	trauma = min(trauma + amount, 0.3)

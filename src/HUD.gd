@@ -8,19 +8,20 @@ extends CanvasLayer
 var last_update = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_player_hp()
 	set_spray_level()
+	set_heart_level()
 	set_level()
 
-func set_player_hp():
-	$Container/hp_container/HP_label.text = "HP: " + str(Globals.player_hp)
-	
 func set_spray_level():
 	var level = float(Globals.spray_level) / Globals.max_spray_level * 100
 	$SprayLevel/TextureProgress.value = level
 	
+func set_heart_level():
+	var level = float(Globals.player_hp) / 100 * 100
+	$HeartLevel/TextureProgress.value = level
+	
 func _on_player_hp_change():
-	set_player_hp()
+	set_heart_level()
 
 func _on_spray_level_change():
 	set_spray_level()
@@ -30,7 +31,13 @@ func _on_level_change(_level):
 	
 func _process(delta: float) -> void:
 	set_time()
-
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_HIDDEN:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		
 func set_level():
 	$Container/level_container/Level_lable.text = "Level: " + str(Globals.level)
 
@@ -40,8 +47,14 @@ func set_time():
 func hide():
 	$Container.visible = false
 	$SprayLevel.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 	
 func show():
 	$Container.visible = true
 	$SprayLevel.visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	set_heart_level()
+	set_spray_level()
+	set_time()
 	

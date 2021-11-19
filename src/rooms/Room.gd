@@ -1,14 +1,11 @@
 extends Node2D
 
 var ANT = preload("res://src/actors/Ant.tscn")
-
 var SMALL_BUG = preload("res://src/actors/SmallBug.tscn")
-
 var PLAYER = preload("res://src/actors/Player.tscn")
-
 var PORTAL = preload("res://src/Portal.tscn")
-
 var SPRAY_PICKUP = preload("res://src/SprayPickup.tscn")
+var HEART_PICKUP = preload("res://src/HeartPickup.tscn")
 
 var portal = null
 var room_cleared = false
@@ -50,8 +47,6 @@ func _ready() -> void:
 		enemy.connect("die", self, "_on_enemy_die")
 		enemies += 1
 	
-	rand_index = randi() % spawn_points.size()
-	
 	for i in 5:
 		var area = $spawn_areas.get_child(randi() % $spawn_areas.get_child_count())
 		for j in 5:
@@ -78,12 +73,17 @@ func _process(delta: float) -> void:
 			portal.enable_portal()
 			
 func _on_portal_entered():
+	Globals.change_spray(100)
 	Globals.next_level()
 	
 func _on_enemy_die(position):
 	enemies -= 1
 	if (randi() % 100) < 25:
 		var pickup = SPRAY_PICKUP.instance()
+		pickup.global_position = position
+		add_child(pickup)
+	elif (randi() % 100) < 25:
+		var pickup = HEART_PICKUP.instance()
 		pickup.global_position = position
 		add_child(pickup)
 

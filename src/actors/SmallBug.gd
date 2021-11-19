@@ -53,8 +53,8 @@ func _physics_process(delta):
 				velocity = Vector2.ZERO
 			else:
 				look_at(target.global_position)
-				target_position.x = target.global_position.x + rand_range(-32, 32)
-				target_position.y = target.global_position.y + rand_range(-32, 32)
+				target_position.x = target.global_position.x + rand_range(-64, 64)
+				target_position.y = target.global_position.y + rand_range(-64, 64)
 		match state:
 			IDLE:
 				state = WANDER
@@ -69,6 +69,9 @@ func _physics_process(delta):
 					$AnimationPlayer.play("idle")
 
 		velocity = move_and_slide(velocity)
+		if is_on_wall() and state == WANDER:
+			update_target_position()
+			
 		last_attack += delta
 
 func accelerate_to_point(point, acceleration_scalar):
@@ -89,14 +92,18 @@ func _on_StepArea_body_entered(body: Node) -> void:
 
 
 func _on_AttackArea_body_entered(body: Node) -> void:
-	if body.name == "Player" and last_attack > attack_delay:
-		print("attack")
-		last_attack = 0
-		body.damage(damage)
+	if body.name == "Player" and $AnimationPlayer.current_animation != "attack":
+		$AnimationPlayer.play("attack")
 		if target == null:
 			emit_signal("small_bugs_attack")
 			target = body
+
 	
+func attack():
+	print("attack")
+	last_attack = 0
+
+	target.damage(damage)
 
 func small_bugs_attack(player):
 	target = player
@@ -104,10 +111,11 @@ func small_bugs_attack(player):
 
 func kill():
 	if state != DEAD:
+		Globals.add_points(1)
 		state = DEAD
 		hp = 0
 		$AnimationPlayer.stop()
-		$Sprite.frame = randi() % 4 + 6
+		$Sprite.frame = randi() % 4 + 8
 		$CollisionShape2D.disabled = true
 		$StepArea/CollisionShape2D.disabled = true
 		$AttackArea/CollisionShape2D.disabled = true

@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/decoration_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/background.png" type="Texture" id=2]
 [ext_resource path="res://assets/wooden_floor_tiles.tres" type="TileSet" id=3]
 [ext_resource path="res://src/rooms/Room.gd" type="Script" id=4]
@@ -32,15 +31,6 @@ tile_data = PoolIntArray( -65532, 0, 0, -65531, 0, 1, -65530, 0, 1, -65529, 0, 1
 [node name="enemies" type="Node2D" parent="."]
 
 [node name="player" type="Node2D" parent="."]
-
-[node name="decorations" type="TileMap" parent="."]
-visible = false
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 16, 16 )
-cell_quadrant_size = 4
-cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
-format = 1
-tile_data = PoolIntArray( -65517, 0, 0, -65515, 0, 0, -65513, 0, 0, 9, 0, 1, 11, 0, 1, 13, 0, 2, 29, 0, 65537, 31, 0, 65537, 33, 0, 2 )
 
 [node name="spawn_points" type="Node2D" parent="."]
 

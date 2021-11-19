@@ -74,7 +74,7 @@ tracks/1/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 532.549, 294.528 )
+position = Vector2( 0.338104, -16.7922 )
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

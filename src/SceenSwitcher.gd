@@ -36,6 +36,8 @@ func _on_loose():
 	$HUD.hide()
 	$AnimationPlayer.play("fade_in")
 
+
+
 func load_next_scene():
 	var new_scene = next_scene.instance()
 	add_child(new_scene)

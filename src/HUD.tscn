@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/spray_hud.png" type="Texture" id=2]
 [ext_resource path="res://assets/spray_hud_texture.png" type="Texture" id=3]
+[ext_resource path="res://assets/heart_hud_texture.png" type="Texture" id=4]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -15,6 +16,7 @@ __meta__ = {
 }
 
 [node name="hp_container" type="MarginContainer" parent="Container"]
+visible = false
 margin_left = 40.0
 margin_top = 40.0
 margin_right = 105.0
@@ -101,6 +103,53 @@ anchor_bottom = 1.0
 margin_left = -128.0
 margin_top = -128.0
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeartLevel" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -944.165
+margin_top = -36.7465
+margin_right = -904.165
+margin_bottom = 3.25354
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="HeartLevel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -74.5769
+margin_top = -34.3224
+margin_right = 3.4231
+margin_bottom = -6.32239
+rect_rotation = 270.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 100.0
+texture_progress = ExtResource( 4 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HeartLevel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -118.756
+margin_top = -132.451
+margin_right = 9.24449
+margin_bottom = -4.45105
+texture = ExtResource( 2 )
+flip_h = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

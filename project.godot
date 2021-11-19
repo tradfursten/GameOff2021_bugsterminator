@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="Exterminator"
+config/name="Bugsterminator"
 run/main_scene="res://src/SceenSwitcher.tscn"
 run/flush_stdout_on_print=true
 boot_splash/bg_color=Color( 0.113725, 0.0901961, 0.101961, 1 )

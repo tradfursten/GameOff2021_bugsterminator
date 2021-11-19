@@ -18,10 +18,11 @@ var player = null
 var velocity = Vector2.ZERO
 
 var last_attack = 0
-var attack_delay = 0.8
+var attack_delay = 0.6
 
 func _ready() -> void:
 	$AnimationPlayer.play("idle")
+	$Sprite.material.set_shader_param("active", false)
 	
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
@@ -50,6 +51,7 @@ func _physics_process(delta: float) -> void:
 func spray(damage):
 	hp -= damage
 	print("Hit by spray")
+	$HitPlayer.play("hit")
 	
 	if hp <= 0:
 		print("die")
@@ -65,6 +67,7 @@ func attack():
 
 func emit_die():
 	emit_signal("die", self.global_position)
+	Globals.add_points(10)
 	queue_free()
 
 
