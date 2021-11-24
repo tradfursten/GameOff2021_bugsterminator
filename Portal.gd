@@ -12,15 +12,18 @@ func _ready() -> void:
 	$Area2D/CollisionShape2D.disabled = true
 	$Sprite.visible = false
 	$StaticBody2D/CollisionShape2D.disabled = true
+	$StairArrow.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 #	pass
-func enable_portal():
+func enable_portal(target):
 	$Area2D/CollisionShape2D.disabled = false
 	$Sprite.visible = true
 	$StaticBody2D/CollisionShape2D.disabled = false
+	$StairArrow.target = target
+	$StairArrow.visible = true
 
 func _on_Area2D_body_entered(body: Node) -> void:
 	if body.name == "Player":

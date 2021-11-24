@@ -31,12 +31,6 @@ func _on_level_change(_level):
 	
 func _process(delta: float) -> void:
 	set_time()
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_HIDDEN:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		
 func set_level():
 	$Container/level_container/Level_lable.text = "Level: " + str(Globals.level)
@@ -47,13 +41,15 @@ func set_time():
 func hide():
 	$Container.visible = false
 	$SprayLevel.visible = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	$HeartLevel.visible = false
+
 
 	
 func show():
 	$Container.visible = true
 	$SprayLevel.visible = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	$HeartLevel.visible = true
+
 	set_heart_level()
 	set_spray_level()
 	set_time()

@@ -35,14 +35,14 @@ func _ready() -> void:
 	player.set_global_position(spawn_points[rand_index].global_position)
 	
 	spawn_points.remove(rand_index)
-	
-	
+	Globals.connect("spray_level_change", self, "_on_spray_level_change")
 	
 	for i in Globals.get_enemies_for_level():
 		var area = $spawn_areas.get_child(randi() % $spawn_areas.get_child_count())
 		var enemy = ANT.instance()
 		$enemies.add_child(enemy)
-		enemy.set_global_position(area.rect_position + Vector2(area.rect_size.x * randf(), area.rect_size.y * randf()))
+		var p = get_position_without_player_threat(area, player.position)
+		enemy.set_global_position(p)
 		enemy.add_to_group("enemies")
 		enemy.connect("die", self, "_on_enemy_die")
 		enemies += 1
@@ -59,7 +59,15 @@ func _ready() -> void:
 			bug.connect("small_bugs_attack", self, "_on_small_bugs_attack")
 			$enemies.add_child(bug)
 			enemies += 1
+			
+	player.enable_input()
 		
+func get_position_without_player_threat(area, player_pos):
+	var p = player_pos
+	while p.distance_to(player_pos) < 132.0:
+		p = area.rect_position + Vector2(area.rect_size.x * randf(), area.rect_size.y * randf())
+	return p
+	
 func _process(delta: float) -> void:
 	if not room_cleared:
 		var clear = true
@@ -70,9 +78,10 @@ func _process(delta: float) -> void:
 		if clear:
 			room_cleared = true
 			GlobalAudioPlayer.play_room_cleared()
-			portal.enable_portal()
+			portal.enable_portal(player)
 			
 func _on_portal_entered():
+	player.disable_input()
 	Globals.change_spray(100)
 	Globals.next_level()
 	
@@ -81,11 +90,36 @@ func _on_enemy_die(position):
 	if (randi() % 100) < 25:
 		var pickup = SPRAY_PICKUP.instance()
 		pickup.global_position = position
+		pickup.add_to_group("pickups")
 		add_child(pickup)
 	elif (randi() % 100) < 25:
 		var pickup = HEART_PICKUP.instance()
 		pickup.global_position = position
+		pickup.add_to_group("pickups")
 		add_child(pickup)
+
+func _on_spray_level_change():
+	if Globals.spray_level <= 0:
+		print("Spray is zero should exit?")
+		if not can_get_spray():
+			Globals.loose()
+
+func can_get_spray():
+	var can_get_spray = false
+	var cleared = true
+	for e in $enemies.get_children():
+		if e.get_class() == "SmallBug":
+			print("Chance of getting spray from small bug")
+			return true
+		if e.hp <= 0:
+			print("Getting spray from level cleared")
+			cleared = false
+	if cleared:
+		return true
+	for p in get_tree().get_nodes_in_group("pickups"):
+		if p.get_class() == "SprayPickup":
+			print("Getting spray from spray pickup")
+			return true
 
 func _on_small_bugs_attack():
 	print("small bugs attack")

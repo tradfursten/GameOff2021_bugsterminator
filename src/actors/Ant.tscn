@@ -231,7 +231,7 @@ hue_variation = 0.1
 hue_variation_random = 1.0
 
 [sub_resource type="CircleShape2D" id=7]
-radius = 106.643
+radius = 100.0
 
 [sub_resource type="CircleShape2D" id=8]
 radius = 17.8582

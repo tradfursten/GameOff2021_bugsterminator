@@ -48,8 +48,8 @@ func _physics_process(delta: float) -> void:
 	
 	transition_state()
 
-func spray(damage):
-	hp -= damage
+func spray(d):
+	hp -= d
 	print("Hit by spray")
 	$HitPlayer.play("hit")
 	

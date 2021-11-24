@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player_no_arm.png-217e679cd912778018395f8fe7b33219.stex"
+path="res://.import/stair_arrow.png-02603e0004d6ec81072655dfcf88bee2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player_no_arm.png"
-dest_files=[ "res://.import/player_no_arm.png-217e679cd912778018395f8fe7b33219.stex" ]
+source_file="res://assets/stair_arrow.png"
+dest_files=[ "res://.import/stair_arrow.png-02603e0004d6ec81072655dfcf88bee2.stex" ]
 
 [params]
 

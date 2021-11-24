@@ -48,10 +48,11 @@ func next_level():
 func take_damage(damage):
 	player_hp -= damage
 	emit_signal("player_hp_change")	
-	if player_hp <= 0:
-		playing = false
-		emit_signal("loose")
 
+
+func loose():
+	playing = false
+	emit_signal("loose")
 
 func use_spray():
 	spray_level -= 1
