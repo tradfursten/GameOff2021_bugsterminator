@@ -35,7 +35,6 @@ func _ready() -> void:
 	player.set_global_position(spawn_points[rand_index].global_position)
 	
 	spawn_points.remove(rand_index)
-	Globals.connect("spray_level_change", self, "_on_spray_level_change")
 	
 	for i in Globals.get_enemies_for_level():
 		var area = $spawn_areas.get_child(randi() % $spawn_areas.get_child_count())
@@ -98,28 +97,6 @@ func _on_enemy_die(position):
 		pickup.add_to_group("pickups")
 		add_child(pickup)
 
-func _on_spray_level_change():
-	if Globals.spray_level <= 0:
-		print("Spray is zero should exit?")
-		if not can_get_spray():
-			Globals.loose()
-
-func can_get_spray():
-	var can_get_spray = false
-	var cleared = true
-	for e in $enemies.get_children():
-		if e.get_class() == "SmallBug":
-			print("Chance of getting spray from small bug")
-			return true
-		if e.hp <= 0:
-			print("Getting spray from level cleared")
-			cleared = false
-	if cleared:
-		return true
-	for p in get_tree().get_nodes_in_group("pickups"):
-		if p.get_class() == "SprayPickup":
-			print("Getting spray from spray pickup")
-			return true
 
 func _on_small_bugs_attack():
 	print("small bugs attack")

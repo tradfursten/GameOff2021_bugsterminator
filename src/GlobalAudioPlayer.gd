@@ -1,8 +1,6 @@
 extends Node2D
 
-var song = preload("res://assets/sounds/song.wav")
-var loop = preload("res://assets/sounds/loop.wav")
-
+var song = preload("res://assets/sounds/Bugsterminator.mp3")
 
 #Effects
 var room_cleared = preload("res://assets/sounds/room_cleared.wav")
@@ -36,10 +34,6 @@ func play_room_cleared():
 	$Effects.stream = room_cleared
 	$Effects.play()
 
-func _on_Music_finished() -> void:
-	if $Music.stream == song:
-		$Music.stream = loop
-		$Music.play()
 		
 func play_random_small_bug_step():
 	var i = randi() % step_on_bugs.size()
